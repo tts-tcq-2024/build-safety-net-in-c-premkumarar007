@@ -9,7 +9,7 @@ char getSoundexCode(char c) {
     c = toupper(c);
 
     if(c=='B' || c=='F' || c=='P' || c=='V') return 1;
-    else if(c=='C' || c=='G' || c=='J' || c=='K' || c=='Q' || c=='S' || c=='X' || c=='Z') retrun 2;
+    else if(c=='C' || c=='G' || c=='J' || c=='K' || c=='Q' || c=='S' || c=='X' || c=='Z') return 2;
     else if(c=='D' || c=='T') return 3;
     else if(c=='L') return 4;
     else if(c=='M' || c=='N') return 5;
