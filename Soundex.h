@@ -8,13 +8,22 @@
 char getSoundexCode(char c) {
     c = toupper(c);
 
-    if(c=='B' || c=='F' || c=='P' || c=='V') return 1;
+    int ans = 0;
+
+    ans = (c=='B' || c=='F' || c=='P' || c=='V');
+    ans = maxValue((c=='C' || c=='G' || c=='J' || c=='K' || c=='Q' || c=='S' || c=='X' || c=='Z'), ans, 2);
     else if(c=='C' || c=='G' || c=='J' || c=='K' || c=='Q' || c=='S' || c=='X' || c=='Z') return 2;
     else if(c=='D' || c=='T') return 3;
     else if(c=='L') return 4;
     else if(c=='M' || c=='N') return 5;
     else if(c=='R') return 6;
     return 0;
+}
+
+int maxValue(int a, int b, int c)
+{
+    if(a!=0 && b<=c) return b;
+    return b;
 }
 
 void generateSoundex(const char *name, char *soundex) {
