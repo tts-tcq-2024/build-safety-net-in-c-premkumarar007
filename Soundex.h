@@ -5,19 +5,18 @@
 #include <ctype.h>
 #include <string.h>
 
-// Array to map characters to Soundex codes
 const int soundexMapping[26] = {
-    0, 1, 2, 3, 0, 1, 2, 0, 0, 2, // A-J
-    2, 4, 5, 5, 0, 1, 2, 6, 2, 3, // K-T
-    0, 1, 0, 2, 0, 2             // U-Z
+    0, 1, 2, 3, 0, 1, 2, 0, 0, 2,
+    2, 4, 5, 5, 0, 1, 2, 6, 2, 3,
+    0, 1, 0, 2, 0, 2             
 };
 
 char getSoundexCode(char c) {
     c = toupper(c);
     if (c < 'A' || c > 'Z') {
-        return '0';  // Non-alphabet characters
+        return '0'; 
     }
-    return soundexMapping[c - 'A'] + '0';  // Convert digit to char
+    return soundexMapping[c - 'A'] + '0';
 }
 
 void appendSoundexCode(char code, char *soundex, int *sIndex) {
