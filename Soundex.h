@@ -38,3 +38,4 @@ void generateSoundex(const char *name, char *soundex) {
     soundex[4] = '\0';
 }
 
+#endif // SOUNDEX_H
