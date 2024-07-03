@@ -5,6 +5,8 @@
 #include <ctype.h>
 #include <string.h>
 
+int getMatchingSoundexNumericalDigit(int a, int b, int c);
+
 char getSoundexCode(char c) {
     c = toupper(c);
 
