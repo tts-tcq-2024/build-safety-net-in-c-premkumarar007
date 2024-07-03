@@ -10,19 +10,19 @@ char getSoundexCode(char c) {
 
     int ans = 0;
 
-    ans = (c=='B' || c=='F' || c=='P' || c=='V');
-    ans = maxValue((c=='C' || c=='G' || c=='J' || c=='K' || c=='Q' || c=='S' || c=='X' || c=='Z'), ans, 2);
-    else if(c=='C' || c=='G' || c=='J' || c=='K' || c=='Q' || c=='S' || c=='X' || c=='Z') return 2;
-    else if(c=='D' || c=='T') return 3;
-    else if(c=='L') return 4;
-    else if(c=='M' || c=='N') return 5;
-    else if(c=='R') return 6;
-    return 0;
+    ans = getMatchingSoundexNumericalDigit((c=='B' || c=='F' || c=='P' || c=='V'),ans,1);
+    ans = getMatchingSoundexNumericalDigit((c=='C' || c=='G' || c=='J' || c=='K' || c=='Q' || c=='S' || c=='X' || c=='Z'), ans, 2);
+    ans = getMatchingSoundexNumericalDigit((c=='D' || c=='T'), ans, 3);
+    ans = getMatchingSoundexNumericalDigit((c=='L'), ans, 4);
+    ans = getMatchingSoundexNumericalDigit((c=='M' || c=='N'), ans, 5);
+    ans = getMatchingSoundexNumericalDigit((c=='R'), ans, 6);
+
+    return ans;
 }
 
-int maxValue(int a, int b, int c)
+int getMatchingSoundexNumericalDigit(int a, int b, int c)
 {
-    if(a!=0 && b<=c) return b;
+    if(a!=0 && b==0) return c;
     return b;
 }
 
