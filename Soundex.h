@@ -1,58 +1,49 @@
 #ifndef SOUNDEX_H
 #define SOUNDEX_H
-
+ 
 #include "Soundex.h"
 #include <ctype.h>
 #include <string.h>
-
-int getMatchingSoundexNumericalDigit(int a, int b, int c);
+ 
+const int soundexMapping[26] = {
+    0, 1, 2, 3, 0, 1, 2, 0, 0, 2,
+    2, 4, 5, 5, 0, 1, 2, 6, 2, 3,
+    0, 1, 0, 2, 0, 2             
+};
  
 char getSoundexCode(char c) {
     c = toupper(c);
- 
-    int ans = 0;
- 
-    ans = getMatchingSoundexNumericalDigit((c=='B' || c=='F' || c=='P' || c=='V'),ans,1);
-    ans = getMatchingSoundexNumericalDigit((c=='C' || c=='G' || c=='J' || c=='K' || c=='Q' || c=='S' || c=='X' || c=='Z'), ans, 2);
-    ans = getMatchingSoundexNumericalDigit((c=='D' || c=='T'), ans, 3);
-    ans = getMatchingSoundexNumericalDigit((c=='L'), ans, 4);
-    ans = getMatchingSoundexNumericalDigit((c=='M' || c=='N'), ans, 5);
-    ans = getMatchingSoundexNumericalDigit((c=='R'), ans, 6);
- 
-    return ans;
+    if (c < 'A' || c > 'Z') {
+        return '0'; 
+    }
+    return soundexMapping[c - 'A'] + '0';
 }
  
-int getMatchingSoundexNumericalDigit(int a, int b, int c)
-{
-    if(a!=0 && b==0) return c;
-    return b;
-}
-
 void appendSoundexCode(char code, char *soundex, int *sIndex) {
     if (code != '0' && code != soundex[*sIndex - 1]) {
         soundex[(*sIndex)++] = code;
     }
 }
-
+ 
 void finalizeSoundex(char *soundex, int sIndex) {
     while (sIndex < 4) {
         soundex[sIndex++] = '0';
     }
     soundex[4] = '\0';
 }
-
+ 
 void generateSoundex(const char *name, char *soundex) {
     int len = strlen(name);
     soundex[0] = toupper(name[0]);
     int sIndex = 1;
-
+ 
     for (int i = 1; i < len && sIndex < 4; i++) {
         char code = getSoundexCode(name[i]);
         appendSoundexCode(code, soundex, &sIndex);
     }
-
+ 
     finalizeSoundex(soundex, sIndex);
 }
-
-
+ 
+ 
 #endif // SOUNDEX_H
