@@ -5,18 +5,27 @@
 #include <ctype.h>
 #include <string.h>
 
-const int soundexMapping[26] = {
-    0, 1, 2, 3, 0, 1, 2, 0, 0, 2,
-    2, 4, 5, 5, 0, 1, 2, 6, 2, 3,
-    0, 1, 0, 2, 0, 2             
-};
-
+int getMatchingSoundexNumericalDigit(int a, int b, int c);
+ 
 char getSoundexCode(char c) {
     c = toupper(c);
-    if (c < 'A' || c > 'Z') {
-        return '0'; 
-    }
-    return soundexMapping[c - 'A'] + '0';
+ 
+    int ans = 0;
+ 
+    ans = getMatchingSoundexNumericalDigit((c=='B' || c=='F' || c=='P' || c=='V'),ans,1);
+    ans = getMatchingSoundexNumericalDigit((c=='C' || c=='G' || c=='J' || c=='K' || c=='Q' || c=='S' || c=='X' || c=='Z'), ans, 2);
+    ans = getMatchingSoundexNumericalDigit((c=='D' || c=='T'), ans, 3);
+    ans = getMatchingSoundexNumericalDigit((c=='L'), ans, 4);
+    ans = getMatchingSoundexNumericalDigit((c=='M' || c=='N'), ans, 5);
+    ans = getMatchingSoundexNumericalDigit((c=='R'), ans, 6);
+ 
+    return ans;
+}
+ 
+int getMatchingSoundexNumericalDigit(int a, int b, int c)
+{
+    if(a!=0 && b==0) return c;
+    return b;
 }
 
 void appendSoundexCode(char code, char *soundex, int *sIndex) {
