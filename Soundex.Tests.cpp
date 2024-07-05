@@ -9,5 +9,5 @@ TEST(SoudexTestsuite, ReplacesConsonantsWithAppropriateDigits) {
   generateSoundex("Rupert", soundex);
   generateSoundex("Pfister", soundex);
   generateSoundex("Prem890", soundex);
- // ASSERT_EQ(soundex,"A200");
+  ASSERT_EQ(soundex,"A200");
 }
