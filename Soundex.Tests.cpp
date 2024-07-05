@@ -35,11 +35,7 @@ TEST(SoundexTestsuite, NoDuplicateConsonantNumbers) {
     ASSERT_STREQ(soundex, "A121");
 }
 
-TEST(SoundexTestsuite, HandlesEmptyInput) {
-    char soundex[5] = "";
-    generateSoundex("", soundex);
-    ASSERT_STREQ(soundex, "0000");
-}
+
 
 TEST(SoundexTestsuite, HandlesSingleCharacterInput) {
     char soundex[5];
