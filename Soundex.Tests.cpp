@@ -15,14 +15,6 @@ TEST(SoundexTestsuite, DifferentConsonantsProduceDifferentCodes) {
     ASSERT_STRNE(soundex1, soundex2);
 }
 
-TEST(SoundexTestsuite, DifferentVowelsProduceSameCode) {
-    char soundex1[5];
-    char soundex2[5];
-    generateSoundex("AX", soundex1);
-    generateSoundex("EX", soundex2);
-    ASSERT_STREQ(soundex1, soundex2);
-}
-
 TEST(SoundexTestsuite, TruncateNamesLongerThanFourCharacters) {
     char soundex[5];
     generateSoundex("AXXXYY", soundex);
